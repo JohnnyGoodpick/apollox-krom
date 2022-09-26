@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Kromatika Futures Exchange</title>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			#app {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				color: "white";
+			}
+		</style>
+		<script src="s3/sdk/sdk.1.4.0.js"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script>
+			const { origin, protocol } = window.location;
+			const isDev = protocol === "http:";
+			FuturesSDK.createTradeUI({
+				container: document.getElementById("app"),
+				config: {
+					staticBaseUrl: `${origin}/s3/static/`, // in production, you have to change this to your static base url
+					apiBaseUrl: isDev ? `${origin}` : undefined, // in production, you don't need to configurate this, it's default as APX's url
+					futuresWsHost: "wss://fstream.apollox.finance/compress",
+					enableThemeToggle: false,
+					headerConfig: {
+						desktopDarkLogoUrl: "/public/kromatika_logo.png",
+						lpPairAddress:
+							"0x6ae0cdc5d2b89a8dcb99ad6b3435b3e7f7290077",
+						lpBaseAddress:
+							"0x3af33bef05c2dcb3c7288b77fe1c8d2aeba4d789",
+						lpQuoteAddress:
+							"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+						hidePerpetualButtonForDesktop: true,
+						tokenNetwork: "eth",
+						pricePrecision: 8,
+					},
+					supportNetworks: Array("eth", "bnb", "arb1"),
+					darkPalette: {
+						primaryHover: "#640ad7", // background hover
+						primary: "#640ad7", // background; text hover,
+						sellHover: "#b7d5d4",
+						sell: "#b7d5d4",
+						buyHover: "#640ad7",
+						buy: "#640ad7",
+						bg5: "#ffffff",
+					},
+					loadingImage: {
+						url: "/public/loading.gif",
+					},
+					defaultTheme: "dark",
+					fontFamily: "Eina-Regular",
+					fontUrl: "/public/fonts/Eina02-Regular.ttf",
+				},
+				state: {
+					symbol: "ETHUSDT",
+					lng: "en",
+				},
+			});
+		</script>
+	</body>
+</html>

@@ -31,7 +31,7 @@
 			FuturesSDK.createTradeUI({
 				container: document.getElementById("app"),
 				config: {
-					staticBaseUrl: `${origin}/s3/static/`, // in production, you have to change this to your static base url
+					staticBaseUrl: `/s3/static/`, // in production, you have to change this to your static base url
 					apiBaseUrl: isDev ? `${origin}` : undefined, // in production, you don't need to configurate this, it's default as APX's url
 					futuresWsHost: "wss://fstream.apollox.finance/compress",
 					enableThemeToggle: false,

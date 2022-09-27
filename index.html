@@ -28,6 +28,7 @@
 		<script>
 			const { origin, protocol } = window.location;
 			const isDev = protocol === "http:";
+			console.log(origin);
 			FuturesSDK.createTradeUI({
 				container: document.getElementById("app"),
 				config: {

@@ -21,7 +21,7 @@
 				color: "white";
 			}
 		</style>
-		<script src="s3/sdk/sdk.1.4.0.js"></script>
+		<script src="s3/sdk/sdk.1.7.4.js"></script>
 	</head>
 	<body>
 		<div id="app"></div>
@@ -31,12 +31,13 @@
 			FuturesSDK.createTradeUI({
 				container: document.getElementById("app"),
 				config: {
-					staticBaseUrl: `/s3/static/`, // in production, you have to change this to your static base url
+					isTestnet: false,
+					staticBaseUrl: `${origin}/s3/static/`, // in production, you have to change this to your static base url
 					apiBaseUrl: isDev ? `${origin}` : undefined, // in production, you don't need to configurate this, it's default as APX's url
 					futuresWsHost: "wss://fstream.apollox.finance/compress",
 					enableThemeToggle: false,
 					headerConfig: {
-						desktopDarkLogoUrl: "kromatika_logo.png",
+						desktopDarkLogoUrl: "/public/kromatika_logo.png",
 						lpPairAddress:
 							"0x6ae0cdc5d2b89a8dcb99ad6b3435b3e7f7290077",
 						lpBaseAddress:
@@ -46,8 +47,12 @@
 						hidePerpetualButtonForDesktop: true,
 						tokenNetwork: "eth",
 						pricePrecision: 8,
+						priceUrl:
+							"https://static.coinpaprika.com/coin/krom-kromatikafinance/logo.png?rev=10691015",
+						priceLogoUrl:
+							"https://static.coinpaprika.com/coin/krom-kromatikafinance/logo.png?rev=10691015",
 					},
-					supportNetworks: Array("eth", "bnb", "arb1"),
+					supportNetworks: Array("bnb", "eth"),
 					darkPalette: {
 						primaryHover: "#640ad7", // background hover
 						primary: "#640ad7", // background; text hover,
@@ -55,14 +60,14 @@
 						sell: "#b7d5d4",
 						buyHover: "#640ad7",
 						buy: "#640ad7",
-						bg5: "#ffffff",
+						badgeYellowBg: "#1E1F31",
 					},
 					loadingImage: {
-						url: "loading.gif",
+						url: "/public/loading.gif",
 					},
 					defaultTheme: "dark",
 					fontFamily: "Eina-Regular",
-					fontUrl: "fonts/Eina02-Regular.ttf",
+					fontUrl: "/public/fonts/Eina02-Regular.ttf",
 				},
 				state: {
 					symbol: "ETHUSDT",
